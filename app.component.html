@@ -6,10 +6,12 @@
     childMapping="subtasks"
     height="350"
     [treeColumnIndex]="0"
-    allowSorting="true"
-    [sortSettings]="sortSettings"
-    (actionComplete)="sort($event)"
-  >
+
+    [contextMenuItems]="contextMenuItems"
+    (contextMenuOpen)="contextMenuOpen($event)"
+    (contextMenuClick)="contextMenuClick($event)"
+  
+    >
     <e-columns>
       <e-column
         field="orderName"
@@ -33,4 +35,187 @@
       ></e-column>
     </e-columns>
   </ejs-treegrid>
+  <div *ngIf="showEditColumn">
+    <ejs-dialog
+      id="dialog"
+      #ejDialog
+      [animationSettings]="animationSettings"
+      header="Edit Column"
+      [target]="targetElement"
+      width="300px"
+      [showCloseIcon]="showCloseIcon"
+    >
+      <ng-template #content>
+        <form id="template_driven" #userForm="ngForm" novalidate>
+          <div class="form-group" style="padding-top: 11px;">
+            <div class="e-float-input">
+              <input
+                type="text"
+                name="ColName"
+                required
+                [(ngModel)]="ColName"
+                #ColumnName="ngModel"
+              />
+              <span class="e-float-line"></span>
+              <label class="e-float-text e-label-top" for="name">Name</label>
+              <div
+                *ngIf="ColumnName.invalid && (ColumnName.dirty || ColumnName.touched)"
+              >
+                <div class="e-error" *ngIf="ColumnName.errors.required">
+                  * Enter Column name
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" style="padding-top: 11px;">
+            <div class="e-float-input">
+              <ejs-dropdownlist
+                #dropdown2
+                id="element"
+                [dataSource]="d2data"
+                [fields]="fields"
+                placeholder="Type"
+                name="ColType"
+                [(ngModel)]="ColType"
+              ></ejs-dropdownlist>
+              <!-- <span class="e-float-line"></span>
+            <label class="e-float-text e-label-top" for="email">Data-Type</label> -->
+            </div>
+          </div>
+
+          <!-- <div class="form-group" style="padding-top: 11px;">
+          <div class="e-float-input">
+            <input
+              type="text"
+              id="email"
+              #emailval="ngModel"
+              name="email"
+              required
+              ngModel
+            />
+            <span class="e-float-line"></span>
+            <label class="e-float-text e-label-top" for="email"
+              >Default-Value</label
+            >
+          </div>
+        </div> -->
+
+          <!-- <div class="form-group" style="padding-top: 11px;">
+          <div class="e-float-input">
+            <input
+              type="text"
+              id="email"
+              #emailval="ngModel"
+              name="email"
+              required
+              ngModel
+            />
+            <span class="e-float-line"></span>
+            <label class="e-float-text e-label-top" for="email"
+              >Minimum-Column-Width</label
+            >
+          </div>
+        </div> -->
+          <div class="form-group" style="padding-top: 11px;">
+            <div class="e-float-input">
+              <ejs-dropdownlist
+                #dropdown1
+                id="ddlelement"
+                [dataSource]="d4data"
+                [fields]="fields"
+                placeholder="Minimum-Column-Width"
+                name="ColMinWidth"
+                [(ngModel)]="ColMinWidth"
+              ></ejs-dropdownlist>
+
+              <!-- <span class="e-float-line"></span>
+    <label class="e-float-text e-label-top" for="email">Font-size</label> -->
+            </div>
+          </div>
+
+          <div class="form-group" style="padding-top: 11px;">
+            <div style="display: flex; justify-content: space-between;">
+              <span class="e-float-text e-label-top"
+                >Choose new Font-color</span
+              >
+
+              <input
+                ejs-colorpicker
+                type="color"
+                id="element"
+                value="#FFFFFF"
+                (change)="changeFontColor($event)"
+                id="colorpicker"
+              />
+            </div>
+          </div>
+          <div class="form-group" style="padding-top: 11px;">
+            <div style="display: flex; justify-content: space-between;">
+              <span class="e-float-text e-label-top"
+                >Choose new Background-color</span
+              >
+
+              <input
+                ejs-colorpicker
+                type="color"
+                id="element"
+                value="#FFFFFF"
+                (change)="changeBackground($event)"
+                id="colorpicker"
+              />
+            </div>
+          </div>
+          <div class="form-group" style="padding-top: 11px;">
+            <div class="e-float-input">
+              <ejs-dropdownlist
+                #dropdown2
+                id="element"
+                [dataSource]="d3data"
+                [fields]="fields"
+                name="ColAlign"
+                [(ngModel)]="ColAlign"
+                placeholder="Alignment"
+              ></ejs-dropdownlist>
+            </div>
+          </div>
+          <div class="form-group" style="padding-top: 11px;">
+            <div style="display: flex; justify-content: space-between;">
+              <span class="e-float-text e-label-top" for="email"
+                >Text-wrap</span
+              >
+
+              <ejs-checkbox
+                labelPosition="Before"
+                [checked]="false"
+                name="ColChecked"
+                [(ngModel)]="ColChecked"
+              ></ejs-checkbox>
+            </div>
+          </div>
+        </form>
+      </ng-template>
+      <ng-template #footerTemplate>
+        <div>
+          <button
+            id="Button1"
+            class="e-control e-btn e-primary e-flat"
+            (click)="saveColumn($event)"
+            data-ripple="true"
+          >
+            <span class="e-btn-icon e-icons e-ok-icon e-icon-left"></span>Save
+          </button>
+          <button
+            id="Button2"
+            class="e-control e-btn e-flat"
+            (click)="btnclick($event)"
+            data-ripple="true"
+          >
+            <span class="e-btn-icon e-icons e-close-icon e-icon-left"></span
+            >Cancel
+          </button>
+        </div>
+      </ng-template>
+    </ejs-dialog>
+  </div>
 </div>
