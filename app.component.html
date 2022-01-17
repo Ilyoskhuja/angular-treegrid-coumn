@@ -10,10 +10,10 @@
     [contextMenuItems]="contextMenuItems"
     (contextMenuOpen)="contextMenuOpen($event)"
     (contextMenuClick)="contextMenuClick($event)"
-  
+    [columns]="treeColumns"
     >
-    <e-columns>
-      <e-column
+    <!-- <e-columns> -->
+      <!-- <e-column
         field="orderName"
         headerText="Order Name"
         width="200"
@@ -32,8 +32,8 @@
         headerText="Units"
         width="120"
         textAlign="Right"
-      ></e-column>
-    </e-columns>
+      ></e-column> -->
+    <!-- </e-columns> -->
   </ejs-treegrid>
   <div *ngIf="showEditColumn">
     <ejs-dialog
