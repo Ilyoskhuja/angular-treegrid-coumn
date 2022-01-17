@@ -62,115 +62,99 @@ export class AppComponent {
     ];
   }
  contextMenuOpen(arg?: BeforeOpenCloseEventArgs): void {
+   console.log("contextMenuOpen:",arg);
     this.rowIndex = arg.rowInfo.rowIndex;
     let elem: Element = arg.event.target as Element;
 
-    if (arg.column.headerText == "Task ID") {
+    if (arg.column.headerText == "Order Name") {
       this.columnValue = 1;
       this.columnField = "TaskID";
     }
-    if (arg.column.headerText == "Task Name") {
+    if (arg.column.headerText == "Category") {
       this.columnValue = 2;
       this.columnField = "TaskName";
     }
-    if (arg.column.headerText == "Start Date") {
+    if (arg.column.headerText == "Order Date") {
       this.columnValue = 3;
 
       this.columnField = "StartDate";
     }
-    if (arg.column.headerText == "End Date") {
+    if (arg.column.headerText == "Units") {
       this.columnValue = 4;
 
       this.columnField = "EndDate";
     }
-    if (arg.column.headerText == "Duration") {
-      this.columnValue = 5;
 
-      this.columnField = "Duration";
-    }
-
-    if (arg.column.headerText == "Progress") {
-      this.columnValue = 6;
-
-      this.columnField = "Progress";
-    }
-    if (arg.column.headerText == "Priority") {
-      this.columnValue = 7;
-
-      this.columnField = "Priority";
-    } else {
-      console.log("********arg.column*********: ", arg.column);
-      this.columnValue = arg.column.index + 1;
-      this.columnField = arg.column.field;
-    }
+    else{}
     let row: Element = elem.closest(".e-row");
     let uid: string = row && row.getAttribute("data-uid");
-    let items: Array<HTMLElement> = [].slice.call(
-      document.querySelectorAll(".e-menu-item")
-    );
-    for (let i: number = 0; i < items.length; i++) {
-      items[i].setAttribute("style", "display: none;");
-    }
-    if (elem.closest(".e-row")) {
+    // let items: Array<HTMLElement> = [].slice.call(
+    //   document.querySelectorAll(".e-menu-item")
+    // );
+    // for (let i: number = 0; i < items.length; i++) {
+    //   items[i].setAttribute("style", "display: none;");
+    // }
+    // if (elem.closest(".e-row")) {
       
-      document
-        .querySelectorAll("li#rndeDialog")[0]
-        .setAttribute("style", "display: block;");
-      document
-        .querySelectorAll("li#rndeRow")[0]
-        .setAttribute("style", "display: block;");
-      document
-        .querySelectorAll("li#rmultiSelect")[0]
-        .setAttribute("style", "display: block;");
-      document
-        .querySelectorAll("li#rcopy")[0]
-        .setAttribute("style", "display: block;");
+    //   document
+    //     .querySelectorAll("li#rndeDialog")[0]
+    //     .setAttribute("style", "display: block;");
+    //   document
+    //     .querySelectorAll("li#rndeRow")[0]
+    //     .setAttribute("style", "display: block;");
+    //   document
+    //     .querySelectorAll("li#rmultiSelect")[0]
+    //     .setAttribute("style", "display: block;");
+    //   document
+    //     .querySelectorAll("li#rcopy")[0]
+    //     .setAttribute("style", "display: block;");
 
-      document
-        .querySelectorAll("li#cut")[0]
-        .setAttribute("style", "display: block;");
-      document
-        .querySelectorAll("li#rsibling")[0]
-        .setAttribute("style", "display: block;");
+    //   document
+    //     .querySelectorAll("li#cut")[0]
+    //     .setAttribute("style", "display: block;");
+    //   document
+    //     .querySelectorAll("li#rsibling")[0]
+    //     .setAttribute("style", "display: block;");
 
-      document
-        .querySelectorAll("li#rchild")[0]
-        .setAttribute("style", "display: block;");
-    } else {
-      let len = this.treegrid.element.querySelectorAll(".e-treegridexpand")
-        .length;
-      if (len !== 0) {
-        // document
-        //   .querySelectorAll('li#style')[0]
-        //   .setAttribute('style', 'display: block;');
-        document
-          .querySelectorAll("li#deleteCol")[0]
-          .setAttribute("style", "display: block;");
-        document
-          .querySelectorAll("li#editCol")[0]
-          .setAttribute("style", "display: block;");
-        document
-          .querySelectorAll("li#newCol")[0]
-          .setAttribute("style", "display: block;");
-        document
-          .querySelectorAll("li#freeze")[0]
-          .setAttribute("style", "display: block;");
-        document
-          .querySelectorAll("li#columnChooser")[0]
-          .setAttribute("style", "display: block;");
-        document
-          .querySelectorAll("li#filter")[0]
-          .setAttribute("style", "display: block;");
-        document
-          .querySelectorAll("li#multiSort")[0]
-          .setAttribute("style", "display: block;");
-      } else {
-        document
-          .querySelectorAll("li#expandall")[0]
-          .setAttribute("style", "display: block;");
-      }
-    }
+    //   document
+    //     .querySelectorAll("li#rchild")[0]
+    //     .setAttribute("style", "display: block;");
+    // } else {
+    //   let len = this.treegrid.element.querySelectorAll(".e-treegridexpand")
+    //     .length;
+    //   if (len !== 0) {
+    //     // document
+    //     //   .querySelectorAll('li#style')[0]
+    //     //   .setAttribute('style', 'display: block;');
+    //     document
+    //       .querySelectorAll("li#deleteCol")[0]
+    //       .setAttribute("style", "display: block;");
+    //     document
+    //       .querySelectorAll("li#editCol")[0]
+    //       .setAttribute("style", "display: block;");
+    //     document
+    //       .querySelectorAll("li#newCol")[0]
+    //       .setAttribute("style", "display: block;");
+    //     document
+    //       .querySelectorAll("li#freeze")[0]
+    //       .setAttribute("style", "display: block;");
+    //     document
+    //       .querySelectorAll("li#columnChooser")[0]
+    //       .setAttribute("style", "display: block;");
+    //     document
+    //       .querySelectorAll("li#filter")[0]
+    //       .setAttribute("style", "display: block;");
+    //     document
+    //       .querySelectorAll("li#multiSort")[0]
+    //       .setAttribute("style", "display: block;");
+    //   } else {
+    //     document
+    //       .querySelectorAll("li#expandall")[0]
+    //       .setAttribute("style", "display: block;");
+    //   }
+    // }
   }
+
 
   contextMenuClick(args): void {
     if (args.item.id === "editCol") {
