@@ -68,91 +68,27 @@ export class AppComponent {
 
     if (arg.column.headerText == "Order Name") {
       this.columnValue = 1;
-      this.columnField = "TaskID";
+      this.columnField = "orderName";
     }
     if (arg.column.headerText == "Category") {
       this.columnValue = 2;
-      this.columnField = "TaskName";
+      this.columnField = "category";
     }
     if (arg.column.headerText == "Order Date") {
       this.columnValue = 3;
 
-      this.columnField = "StartDate";
+      this.columnField = "orderDate";
     }
     if (arg.column.headerText == "Units") {
       this.columnValue = 4;
 
-      this.columnField = "EndDate";
+      this.columnField = "units";
     }
 
     else{}
     let row: Element = elem.closest(".e-row");
     let uid: string = row && row.getAttribute("data-uid");
-    // let items: Array<HTMLElement> = [].slice.call(
-    //   document.querySelectorAll(".e-menu-item")
-    // );
-    // for (let i: number = 0; i < items.length; i++) {
-    //   items[i].setAttribute("style", "display: none;");
-    // }
-    // if (elem.closest(".e-row")) {
-      
-    //   document
-    //     .querySelectorAll("li#rndeDialog")[0]
-    //     .setAttribute("style", "display: block;");
-    //   document
-    //     .querySelectorAll("li#rndeRow")[0]
-    //     .setAttribute("style", "display: block;");
-    //   document
-    //     .querySelectorAll("li#rmultiSelect")[0]
-    //     .setAttribute("style", "display: block;");
-    //   document
-    //     .querySelectorAll("li#rcopy")[0]
-    //     .setAttribute("style", "display: block;");
-
-    //   document
-    //     .querySelectorAll("li#cut")[0]
-    //     .setAttribute("style", "display: block;");
-    //   document
-    //     .querySelectorAll("li#rsibling")[0]
-    //     .setAttribute("style", "display: block;");
-
-    //   document
-    //     .querySelectorAll("li#rchild")[0]
-    //     .setAttribute("style", "display: block;");
-    // } else {
-    //   let len = this.treegrid.element.querySelectorAll(".e-treegridexpand")
-    //     .length;
-    //   if (len !== 0) {
-    //     // document
-    //     //   .querySelectorAll('li#style')[0]
-    //     //   .setAttribute('style', 'display: block;');
-    //     document
-    //       .querySelectorAll("li#deleteCol")[0]
-    //       .setAttribute("style", "display: block;");
-    //     document
-    //       .querySelectorAll("li#editCol")[0]
-    //       .setAttribute("style", "display: block;");
-    //     document
-    //       .querySelectorAll("li#newCol")[0]
-    //       .setAttribute("style", "display: block;");
-    //     document
-    //       .querySelectorAll("li#freeze")[0]
-    //       .setAttribute("style", "display: block;");
-    //     document
-    //       .querySelectorAll("li#columnChooser")[0]
-    //       .setAttribute("style", "display: block;");
-    //     document
-    //       .querySelectorAll("li#filter")[0]
-    //       .setAttribute("style", "display: block;");
-    //     document
-    //       .querySelectorAll("li#multiSort")[0]
-    //       .setAttribute("style", "display: block;");
-    //   } else {
-    //     document
-    //       .querySelectorAll("li#expandall")[0]
-    //       .setAttribute("style", "display: block;");
-    //   }
-    // }
+    
   }
 
 
@@ -172,6 +108,7 @@ export class AppComponent {
      
 
       this.treeColumns.forEach((r) => {
+        console.log("R:",r);
         if (!catched) {
           console.log('catched:', catched);
           catched = true;
