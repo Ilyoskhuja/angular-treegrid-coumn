@@ -13,6 +13,8 @@ import { BeforeOpenCloseEventArgs } from '@syncfusion/ej2-inputs';
 })
 export class AppComponent {
   public data: Object[] = [];
+
+  public rowIndex: number;
   public contextMenuItems: Object;
   public ColName: string = "";
   columnValue: number;
