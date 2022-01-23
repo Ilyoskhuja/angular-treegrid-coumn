@@ -33,6 +33,14 @@ export class AppComponent {
   @ViewChild("treegrid")
   public treegrid: TreeGridComponent;
 
+
+  @ViewChild("ejDialog") ejDialog: DialogComponent;
+
+
+  public textWrap: boolean = false;
+
+  ColChecked: boolean = false;
+
   public d2data=[];
 
   public d4data=[];
@@ -86,9 +94,7 @@ export class AppComponent {
     ]);
 
     (this.fields = { text: "type", value: "id" });
-    console.log("this.dropdown2:",this.dropdown2)
-    this.dropdown2.dataSource = this.d2data;
-    this.dropdown2.value = "string";
+  
   }
  contextMenuOpen(arg?: BeforeOpenCloseEventArgs): void {
    console.log("contextMenuOpen:",arg);
@@ -131,11 +137,13 @@ export class AppComponent {
   }
  
   public saveColumn() {
+    console.log("saveColumn:");
     if (this.checkNewEdit == 'edit') {
       var catched = false;
 
      
-
+      
+    console.log("edit:")
       this.treeColumns.forEach((r) => {
         console.log("R:",r);
         if (!catched) {
@@ -154,15 +162,11 @@ export class AppComponent {
           r.headerText = this.ColName;
           r.type = this.ColType;
           r.textAlign = this.ColAlign;
-          r.minWidth = this.ColMinWidth;
           r['customAttributes'] = { class: 'cssClassaa' };
         }
       });
 
-      this.treeColumns = [];
-
-      this.treeColumns = this.listHeaders;
-
+   
       this.treegrid.refreshColumns();
       this.textWrap = this.ColChecked;
     }
@@ -173,6 +177,9 @@ export class AppComponent {
   }
   public changeFontColor(e: ChangeEventArgs): void {
     this.ColFColor = <string>e.value;
+  }
+  public changeBackground(e: ChangeEventArgs): void {
+    this.ColBColor = <string>e.value;
   }
  
 
