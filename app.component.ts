@@ -5,15 +5,20 @@ import { addClass, removeClass } from '@syncfusion/ej2-base';
 import { DialogComponent } from "@syncfusion/ej2-angular-popups";
 import { DropDownList, ChangeEventArgs } from "@syncfusion/ej2-dropdowns";
 import { BeforeOpenCloseEventArgs } from '@syncfusion/ej2-inputs';
-
+import { DropDownListComponent } from '@syncfusion/ej2-angular-dropdowns';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   providers: [],
 })
 export class AppComponent {
+
+
+ 
+  public dropDownFilter: DropDownList;
   public data: Object[] = [];
 
+  public fields: Object;
   public rowIndex: number;
   public contextMenuItems: Object;
   public ColName: string = "";
@@ -27,6 +32,12 @@ export class AppComponent {
   ColBColor: string = '';
   @ViewChild("treegrid")
   public treegrid: TreeGridComponent;
+
+  public d2data=[];
+
+  public d4data=[];
+
+  public d3data= [];
 
   public treeColumns:any= [
     {
@@ -60,6 +71,24 @@ export class AppComponent {
     this.contextMenuItems = [
       { text: 'Edit ', target: '.e-headercontent', id: 'editCol' },
     ];
+    (this.d2data = [
+      { id: "string", type: "string" },
+      { id: "number", type: "number" },
+      { id: "boolean", type: "boolean" },
+      { id: "datetime", type: "datetime" },
+      { id: "date", type: "date" }
+    ]);
+  
+    (this.d3data = [
+      { id: "right", type: "Right" },
+      { id: "left", type: "Left" },
+      { id: "Center", type: "Center" }
+    ]);
+
+    (this.fields = { text: "type", value: "id" });
+    console.log("this.dropdown2:",this.dropdown2)
+    this.dropdown2.dataSource = this.d2data;
+    this.dropdown2.value = "string";
   }
  contextMenuOpen(arg?: BeforeOpenCloseEventArgs): void {
    console.log("contextMenuOpen:",arg);
@@ -155,6 +184,7 @@ export class AppComponent {
       ).headerText;
      
       this.ColType = this.treegrid.getColumnByField(this.columnField).type;
+      console.log("ColType:",this.ColType)
     } else {
       this.ColName = "";
       this.ColType = "";
